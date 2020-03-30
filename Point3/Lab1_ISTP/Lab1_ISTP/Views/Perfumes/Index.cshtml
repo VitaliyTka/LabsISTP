@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Lab1_ISTP.Perfumes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1>Парфумы @ViewBag.Data</h1>
+
+    <p>
+        @Html.ActionLink("Додати новий парфум", "Create", new { id = @ViewBag.Id , check = @ViewBag.Check })
+    </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Packing.TypePacking.TypePacking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price.DateCreation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price.Currency.Currency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Packing.Volume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Packing.PerfumeInformation.YearOfIssue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Packing.PerfumeInformation.PicturePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Packing.PerfumeInformation.PerfumeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Packing.PerfumeInformation.ClassificationPerfume.ClassificationPerfume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Packing.PerfumeInformation.Manufacturer.Manufacturer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Packing.TypePacking.TypePacking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price.DateCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price.Currency.Currency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Packing.Volume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Packing.PerfumeInformation.YearOfIssue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Packing.PerfumeInformation.PicturePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Packing.PerfumeInformation.PerfumeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Packing.PerfumeInformation.ClassificationPerfume.ClassificationPerfume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Packing.PerfumeInformation.Manufacturer.Manufacturer)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

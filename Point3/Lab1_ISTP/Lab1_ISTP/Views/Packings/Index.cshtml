@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Lab1_ISTP.Packings>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Пакунок @ViewBag.Data</h1>
+<!--
+<p>
+    <a asp-action="Create" asp-route-id="@ViewBag.Id">Create New</a>
+</p>-->
+
+<p>
+    @Html.ActionLink("Додати новий пакунок", "Create", new { id = @ViewBag.Id, check = @ViewBag.Check })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Volume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PerfumeInformation.PerfumeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PerfumeInformation.YearOfIssue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PerfumeInformation.PicturePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PerfumeInformation.Manufacturer.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PerfumeInformation.ClassificationPerfume.ClassificationPerfume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypePacking.TypePacking)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Volume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerfumeInformation.PerfumeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerfumeInformation.YearOfIssue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerfumeInformation.PicturePath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerfumeInformation.Manufacturer.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerfumeInformation.ClassificationPerfume.ClassificationPerfume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypePacking.TypePacking)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

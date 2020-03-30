@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Lab1_ISTP.Prices>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ціна з валютою @ViewBag.CurrencysCurrency</h1>
+
+<p>
+    @Html.ActionLink("Додати нову ціну", "Create", new { currencyId = @ViewBag.CurrencysId})
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Currency.Currency)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currency.Currency)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

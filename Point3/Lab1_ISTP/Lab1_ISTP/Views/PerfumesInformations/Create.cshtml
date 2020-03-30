@@ -1,0 +1,77 @@
+﻿@model Lab1_ISTP.PerfumesInformations
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Створити нову інформацію @ViewBag.Data , @ViewBag.InputId</h1>
+
+<h4>PerfumesInformations</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!--<div class="form-group">
+        <label asp-for="Id" class="control-label"></label>
+        <input asp-for="Id" class="form-control" />
+        <span asp-validation-for="Id" class="text-danger"></span>
+    </div>-->
+            <div class="form-group">
+                <label asp-for="YearOfIssue" class="control-label"></label>
+                <input asp-for="YearOfIssue" class="form-control" min="1900" max="2100"/>
+                <span asp-validation-for="YearOfIssue" class="text-danger"></span>
+            </div>
+            @if (@ViewBag.Check == "classificationsPerfume")
+            {
+                <div class="form-group">
+                    <label asp-for="ManufacturerId" class="control-label"></label>
+                    <select asp-for="ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerId"></select>
+                </div>
+                <input type="hidden" value="@ViewBag.InputId" name="ClassificationPerfumeId">
+            }
+
+            @if (@ViewBag.Check == "manufacturer")
+            {
+                <div class="form-group">
+                    <label asp-for="ClassificationPerfumeId" class="control-label"></label>
+                    <select asp-for="ClassificationPerfumeId" class="form-control" asp-items="ViewBag.ClassificationPerfumeId"></select>
+                </div>
+                <input type="hidden" value="@ViewBag.InputId" name="ManufacturerId">
+            }
+            @if (@ViewBag.Check == "")
+            {
+                <div class="form-group">
+                    <label asp-for="ClassificationPerfumeId" class="control-label"></label>
+                    <select asp-for="ClassificationPerfumeId" class="form-control" asp-items="ViewBag.ClassificationPerfumeId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ManufacturerId" class="control-label"></label>
+                    <select asp-for="ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerId"></select>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="PicturePath" class="control-label"></label>
+                <input asp-for="PicturePath" class="form-control" />
+                <span asp-validation-for="PicturePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PerfumeName" class="control-label"></label>
+                <input asp-for="PerfumeName" class="form-control" />
+                <span asp-validation-for="PerfumeName" class="text-danger"></span>
+            </div>
+            <input type="hidden" value="@ViewBag.Check" name="Check">
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
